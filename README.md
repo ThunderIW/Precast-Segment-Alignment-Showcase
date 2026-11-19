@@ -4,15 +4,15 @@
 
 # Precast Segment Alignment
 
-**Track precast bridge segments as they are erected, and plan the shims that keep the deck on its design alignment.**
+**Keeps a precast bridge deck on line while it's being built, one segment at a time.**
 
 ![Version 36](https://img.shields.io/badge/version-v36-16235c?style=for-the-badge) ![HTML5](https://img.shields.io/badge/HTML5-single_file-2f6fd0?style=for-the-badge&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-no_framework-1f8a70?style=for-the-badge&logo=javascript&logoColor=white) ![Offline](https://img.shields.io/badge/runs-offline-b45309?style=for-the-badge)
 
 <a href="docs/video/Precast%20Segment%20Alignment%20-%20Promo%20v36%20(rev%201).mp4"><img src="docs/video/promo_thumbnail_play.jpg" alt="Play the Precast Segment Alignment promo video" width="840"></a>
 
-<sub>A 52-second promo: from one surveyed segment to a deck back inside the tolerance envelope. Click the image, then the play button on GitHub's file page.<br>Music: <i>Motivational Upbeat Corporate</i>, a royalty-free background track.</sub>
+<sub>A short 52-second video of the app in action. Click the image, then hit play on the GitHub file page.<br>Music: <i>Motivational Upbeat Corporate</i>, a royalty-free background track.</sub>
 
-<sub>This is a showcase repository. It describes the app; the source code stays private. Every segment, survey value and shim in the video and screenshots comes from the app's built-in <b>Demo</b> sample run. No real project data appears anywhere.</sub>
+<sub>This repo is just a showcase, the source code itself is private. All the segments, survey values and shims you see in the video and screenshots come from the app's built-in <b>Demo</b> run, so there's no real project data in here.</sub>
 
 </div>
 
@@ -21,17 +21,17 @@
 >
 > **Copyright © 2026 Immanuel Wiessler and Wiecon Consultants Taiwan. All rights reserved.**
 >
-> This repository holds documentation only. The Precast Segment Alignment source code is private. To ask about the project, email **[im.wiessler@gmail.com](mailto:im.wiessler@gmail.com)**.
+> This repository only holds documentation. The source code for Precast Segment Alignment is private. If you'd like to know more about the project, email me at **[im.wiessler@gmail.com](mailto:im.wiessler@gmail.com)**.
 
 <br>
 
 <div align="center">
 
 <table>
-<tr><td><b>Input</b></td><td>The level difference Δh surveyed at the front top corner of each new segment, plus the run's geometry</td><td>typed in, or pasted as a column from Excel</td></tr>
-<tr><td><b>Output</b></td><td>Rotations, joint openings, deviation from the design alignment, and a shim plan for every joint still to come</td><td>graphs, CSV schedule, A4 PDF report</td></tr>
-<tr><td><b>Stack</b></td><td>One self-contained HTML file: plain JavaScript, inline SVG graphs, a built-in PDF writer</td><td>no server, no install, no framework</td></tr>
-<tr><td><b>Platform</b></td><td>Chrome or Edge on a Windows PC</td><td>also works on tablets and phones on site</td></tr>
+<tr><td><b>Input</b></td><td>The level difference (Δh) surveyed on each new segment, plus the basic geometry of the run</td><td>typed in by hand, or pasted straight from Excel</td></tr>
+<tr><td><b>Output</b></td><td>How much each segment has rotated, how far off the alignment the deck is, and where the shims should go</td><td>graphs, a CSV schedule and an A4 PDF report</td></tr>
+<tr><td><b>Stack</b></td><td>A single HTML file with plain JavaScript, SVG graphs and its own PDF writer</td><td>no server, nothing to install</td></tr>
+<tr><td><b>Platform</b></td><td>Chrome or Edge on a Windows PC</td><td>also works on a tablet or phone on site</td></tr>
 </table>
 
 </div>
@@ -40,14 +40,14 @@
 
 | # | Section | What's in it |
 | :---: | --- | --- |
-| 01 | [Why this exists](#01-why-this-exists) | Why a tiny tilt on one segment matters at mid-span |
-| 02 | [Features](#02-features) | The eight things the app gives the site team |
-| 03 | [Screenshots](#03-screenshots) | The main screens, on the Demo sample run |
-| 04 | [Architecture](#04-architecture) | How one HTML file does the calculation, the drawing and the PDF |
-| 05 | [Example workflow](#05-example-workflow) | One segment, from survey to the next shim |
-| 06 | [What it doesn't do](#06-what-it-doesnt-do) | Scope limits, stated plainly |
-| 07 | [Changelog](#07-changelog) | The main milestones, newest first |
-| 08 | [Copyright](#08-copyright) | Proprietary software: what this repository is and isn't |
+| 01 | [Why this exists](#01-why-this-exists) | The problem it solves |
+| 02 | [Features](#02-features) | What the app can do |
+| 03 | [Screenshots](#03-screenshots) | The main screens, using the Demo run |
+| 04 | [Architecture](#04-architecture) | How it all fits into one HTML file |
+| 05 | [Example workflow](#05-example-workflow) | What using it looks like for one segment |
+| 06 | [What it doesn't do](#06-what-it-doesnt-do) | Things that are out of scope |
+| 07 | [Changelog](#07-changelog) | The bigger updates so far |
+| 08 | [Copyright](#08-copyright) | What this repo is and isn't |
 
 <br>
 
@@ -55,20 +55,20 @@
 
 ## 01. Why this exists
 
-![Before](https://img.shields.io/badge/before-hand_calculations_per_segment-64748b?style=flat-square) ![Now](https://img.shields.io/badge/now-one_page_updated_as_you_type-16235c?style=flat-square)
+![Before](https://img.shields.io/badge/before-hand_calculations_per_segment-64748b?style=flat-square) ![Now](https://img.shields.io/badge/now-one_page_that_updates_as_you_type-16235c?style=flat-square)
 
-Precast segmental bridge decks are built one segment at a time. Each segment is glued or match-cast to the one before it, and each one sits very slightly off the design line. The error on a single segment is tiny, but it is carried forward by every segment that follows.
+Precast segmental bridges are built one segment at a time, with each new segment fixed to the end of the last one. No segment ever goes in perfectly, it always sits a tiny bit off the design line. On its own that's nothing, but every segment after it inherits the error, so it keeps growing the further out you go.
 
-In the Demo run, one segment surveyed **0.2 mm** low rotates by just **0.004°**. Projected 129 m on to mid-span, that is **21.5 mm**. Left uncorrected, the deck ends up **137 mm** off at mid-span. With the shims the app plans, it finishes **2.2 mm** off, well inside the ±5 mm tolerance envelope.
+To give an idea of how quickly that adds up, in the Demo run a single segment that was surveyed only **0.2 mm** low ends up rotated by about **0.004°**. Carry that 129 m out to mid-span and it's already **21.5 mm**. If nobody corrects it, the deck finishes **137 mm** off at mid-span. With the shims the app suggests, it finishes just **2.2 mm** off, which is well inside the ±5 mm tolerance.
 
-The app replaces a per-segment spreadsheet routine with one page that recalculates the whole run every time a survey value is entered, draws it, and says where the next shim should go.
+Before this, the team worked these numbers out segment by segment in a spreadsheet. The app does it all on one page: you enter a survey value, it recalculates the whole run, redraws it, and tells you where the next shim should go.
 
 ```mermaid
 flowchart LR
     A[Site survey<br/>Δh on the new segment] --> B[Precast Segment Alignment<br/>one HTML page]
     B --> C[Rotation and<br/>joint openings]
     B --> D[Effect at mid-span]
-    B --> E[Shim plan for<br/>every joint to come]
+    B --> E[Shim plan for<br/>the joints still to come]
     E --> F[Shim schedule<br/>CSV and PDF]
 ```
 
@@ -77,28 +77,28 @@ flowchart LR
 ## 02. Features
 
 **1.** ![Survey in, geometry out](https://img.shields.io/badge/Survey_in,_geometry_out-b45309?style=flat-square)<br>
-Enter the surveyed Δh for each segment (or paste a column from Excel). The app works out each segment's rotation about the correct pivot corner, the top and soffit joint openings, and the deviation from the design alignment at every segment.
+You type in the surveyed Δh for each segment, or paste a whole column from Excel. From that the app works out how each segment has rotated (and around which corner), how wide the joints have opened at the top and bottom, and how far every segment is from the design alignment.
 
 **2.** ![Projection to mid-span](https://img.shields.io/badge/Projection_to_mid--span-2f6fd0?style=flat-square)<br>
-Every rotation is projected along its lever to mid-span, so the team sees what a fraction of a millimetre on site does to the finished deck.
+Each rotation is carried forward to mid-span, so you can see straight away what a fraction of a millimetre on site actually means for the finished deck.
 
 **3.** ![Auto shimming](https://img.shields.io/badge/Auto_shimming-16235c?style=flat-square)<br>
-*Auto: back into the envelope, then parallel.* The solver plans a shim on every joint still to come: a tangent recovery when the line is outside the tolerance envelope, then the shims that keep the segments parallel to the design alignment. Shims never exceed the maximum plate thickness and are rounded to the plate increment. Manual shimming is there too.
+The app plans a shim for every joint that hasn't been built yet. If the deck has drifted outside the tolerance, it first steers it back in, and after that it keeps the segments running parallel to the design line. It never suggests a shim thicker than the maximum plate, and it rounds every shim to the plate sizes you actually have. You can also enter the shims yourself if you'd rather.
 
 **4.** ![Erection window and assembled run](https://img.shields.io/badge/Erection_window_and_assembled_run-1f8a70?style=flat-square)<br>
-Two elevation views: a detailed window of a few segments with every value on the drawing, and the whole run as one chain. Rotations and joint openings are exaggerated so they can be seen; every number shown is the true value. Segments that are erected and inside the envelope turn green.
+There are two side views. One zooms in on the few segments around the latest one and shows every value on the drawing. The other shows the whole run as one chain. The rotations are exaggerated in the drawings so you can actually see them, but the numbers are always the real values. Segments that are built and within tolerance turn green.
 
 **5.** ![Alignment checks](https://img.shields.io/badge/Alignment_checks-dc2626?style=flat-square)<br>
-A status bar says at a glance whether every erected segment is inside the ±5 mm envelope, and names the worst one. Impossible or suspicious survey values are flagged instead of silently used.
+A bar at the top tells you right away whether every built segment is within ±5 mm, and which one is the furthest off. If a survey value looks wrong or impossible, the app flags it rather than quietly using it.
 
 **6.** ![PDF and CSV export](https://img.shields.io/badge/PDF_and_CSV_export-0f766e?style=flat-square)<br>
-Export any graph and the erection schedule to an A4 landscape PDF, with a live preview of the real pages before saving. The PDF is drawn in the page itself, so it works offline with no print dialog. The schedule can also be copied as CSV.
+You can export any of the graphs and the erection schedule to an A4 PDF, and preview the pages before saving. The PDF is made inside the page itself, so it works offline and doesn't need the print dialog. The schedule can also be copied as a CSV.
 
 **7.** ![View only, Edit and Demo modes](https://img.shields.io/badge/View_only,_Edit_and_Demo_modes-7c3aed?style=flat-square)<br>
-The page opens in **View only**, so nobody changes a live run by accident. **Edit** is unlocked with a password, checked as a SHA-256 hash and never stored as text. **Demo** loads a sample run that can be changed freely and is never saved; *Play erection* puts its segments up one by one.
+The app always opens in **View only**, so nobody can change a live run by accident. To make changes you switch to **Edit** and enter a password (it's stored as a SHA-256 hash, never as plain text). There's also a **Demo** mode with a sample run you can play around with freely, since nothing in it gets saved. Press *Play erection* and it builds the sample bridge segment by segment.
 
 **8.** ![Built for site and office](https://img.shields.io/badge/Built_for_site_and_office-0891b2?style=flat-square)<br>
-Inputs are saved automatically in the browser. There's a built-in step-by-step guide, light and dark themes, and a layout that works on a phone on site as well as a desktop in the office.
+Everything you enter is saved automatically in the browser. The app also has a built-in step-by-step guide, light and dark themes, and a layout that works on a phone on site as well as on a desktop in the office.
 
 ---
 
@@ -106,19 +106,19 @@ Inputs are saved automatically in the browser. There's a built-in step-by-step g
 
 ![The app at work](https://img.shields.io/badge/the_app_at_work-16235c?style=flat-square) ![Demo sample run](https://img.shields.io/badge/data-Demo_sample_run-b45309?style=flat-square)
 
-**Erection window.** A few segments around the latest one, with surveyed Δh, rotation, joint openings and the planned shims drawn in place.
+**The erection window.** A close-up of the segments around the latest one, with the survey, the rotation, the joint openings and the planned shims drawn right on the segments.
 
 <div align="center">
 <img src="docs/screenshots/01_erection_window.jpg" alt="Erection elevation SC19 to SC25: green erected segments with shims in the joints, design lines and tolerance envelope" width="840">
 </div>
 
-**Erection schedule inputs.** One row per segment: the survey, the shims on the front face, the joint openings, rotation, the effect at mid-span and the deviation from the alignment.
+**The erection schedule.** One row per segment, with the survey, the shims, the joint openings, the rotation, the effect at mid-span and how far it is from the alignment.
 
 <div align="center">
 <img src="docs/screenshots/02_erection_schedule.jpg" alt="Erection schedule table with surveyed Δh values, shims, joint openings and status per segment" width="840">
 </div>
 
-**Result.** The latest segment, its effect at mid-span, the mid-span deviation as erected and with the planned shims, and how much shim plate the plan needs.
+**The result.** The latest segment and what it does at mid-span, where the deck would end up with and without the shims, and how much shim plate the plan needs in total.
 
 <div align="center">
 <img src="docs/screenshots/03_result_auto_shimming.jpg" alt="Result tiles: mid-span as erected -137.2 mm, with shims -2.2 mm, 16 shimmed joints, 14.50 mm of plate" width="840">
@@ -128,12 +128,12 @@ Inputs are saved automatically in the browser. There's a built-in step-by-step g
 
 <table>
 <tr>
-<td align="center"><img src="docs/screenshots/04_assembled_run.jpg" alt="Assembled run of all erected segments" width="410"><br><sub><b>Assembled run</b>: the whole span as one chain.</sub></td>
-<td align="center"><img src="docs/screenshots/05_alignment_profile.jpg" alt="Deviation from design alignment chart" width="410"><br><sub><b>Alignment profile</b>: deviation at every segment.</sub></td>
+<td align="center"><img src="docs/screenshots/04_assembled_run.jpg" alt="Assembled run of all erected segments" width="410"><br><sub><b>Assembled run</b>: the whole span in one view.</sub></td>
+<td align="center"><img src="docs/screenshots/05_alignment_profile.jpg" alt="Deviation from design alignment chart" width="410"><br><sub><b>Alignment profile</b>: how far off each segment is.</sub></td>
 </tr>
 <tr>
-<td align="center"><img src="docs/screenshots/07_export_to_pdf.jpg" alt="Export to PDF dialog with a live page preview" width="410"><br><sub><b>Export to PDF</b>: tick what to include, preview, save.</sub></td>
-<td align="center"><img src="docs/screenshots/08_dark_theme.jpg" alt="Erection window in the dark theme" width="410"><br><sub><b>Dark theme</b>: the same views, easier on the eyes at night.</sub></td>
+<td align="center"><img src="docs/screenshots/07_export_to_pdf.jpg" alt="Export to PDF dialog with a live page preview" width="410"><br><sub><b>Export to PDF</b>: pick what to include, check the preview, save.</sub></td>
+<td align="center"><img src="docs/screenshots/08_dark_theme.jpg" alt="Erection window in the dark theme" width="410"><br><sub><b>Dark theme</b>: same views, easier on the eyes.</sub></td>
 </tr>
 </table>
 
@@ -145,15 +145,16 @@ Inputs are saved automatically in the browser. There's a built-in step-by-step g
 
 ![HTML5](https://img.shields.io/badge/HTML5-one_file-2f6fd0?style=flat-square) ![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-1f8a70?style=flat-square) ![SVG](https://img.shields.io/badge/graphs-inline_SVG-16235c?style=flat-square) ![PDF](https://img.shields.io/badge/PDF-built_in_writer-0f766e?style=flat-square) ![localStorage](https://img.shields.io/badge/store-browser_localStorage-b45309?style=flat-square)
 
+The whole app is one HTML file of about 460 KB. There's no server and no install: you copy the file onto a PC and open it.
+
 | Part | What it does |
 | :--- | :--- |
-| **One HTML file** | The whole app (about 460 KB) is one file: layout, styles, calculation, drawings and PDF export. Copy it to a PC and double-click it. |
-| **Calculation** | Rotations about the correct pivot corner, joint openings, projection to mid-span, and the deviation from the design alignment, recalculated for the whole run on every input. |
-| **Shim solver** | Plans the shims for every joint still to come: tangent recovery back into the envelope, then parallel to the design alignment, within the maximum plate thickness and plate increment. |
-| **Drawings** | Erection window, assembled run, centerline elevation, deviation and rotation charts, all drawn as inline SVG and themed for light and dark. |
-| **PDF export** | A PDF writer inside the page draws real A4 pages (text, not pictures) with a live preview, and saves them with the browser's Save-as window where supported. |
-| **Storage** | Inputs are saved in the browser's local storage. The edit password is kept only as a SHA-256 hash. |
-| **Promo video** | A 52-second promo built with HyperFrames from screens of the app's Demo run. |
+| **Calculation** | Works out the rotations, joint openings, the effect at mid-span and the distance from the design alignment, and redoes the whole run every time something changes. |
+| **Shim planner** | Plans the shims for the joints still to come: first back inside the tolerance, then parallel to the design line, using only plate sizes you actually have. |
+| **Drawings** | The erection window, assembled run, centerline elevation and the deviation and rotation charts, all drawn as SVG in both light and dark themes. |
+| **PDF export** | A small PDF writer built into the page. It draws proper A4 pages with real text rather than screenshots, and saves them through the browser's Save As window where that's available. |
+| **Storage** | Your inputs are kept in the browser's local storage. The edit password is only ever stored as a SHA-256 hash. |
+| **Promo video** | The 52-second video at the top was made with HyperFrames, using screens from the app's Demo run. |
 
 ---
 
@@ -161,21 +162,21 @@ Inputs are saved automatically in the browser. There's a built-in step-by-step g
 
 ![One segment, start to finish](https://img.shields.io/badge/one_segment,_start_to_finish-16235c?style=flat-square)
 
-1. **Set up the run.** First and last segment, segment length and depth, distance to mid-span, the tolerance envelope, the maximum shim and the plate increment.
-2. **Survey the new segment.** Type its Δh at the front top-right corner into the schedule, then tick **Erected**.
-3. **Read the result.** The segment's rotation, its effect at mid-span and whether the run is still inside the envelope update straight away.
-4. **Pack the next shim.** The note under the result says which shim to pack next, on which face and in which joint, before the next segment goes up.
-5. **Report.** Export the graphs and the schedule to PDF, or copy the schedule as CSV.
+1. **Set up the run.** Enter the first and last segment, the segment length and depth, the distance to mid-span, the tolerance, the thickest shim allowed and the plate sizes.
+2. **Survey the new segment.** Type its Δh into the erection schedule and tick **Erected**.
+3. **Check the result.** The rotation, the effect at mid-span and whether you're still within tolerance all update immediately.
+4. **Pack the next shim.** Just below the result, the app tells you which shim to put in next, and in which joint, before the next segment goes up.
+5. **Share it.** Export the graphs and the schedule to PDF, or copy the schedule as a CSV.
 
 ---
 
 ## 06. What it doesn't do
 
-| Not included | Status |
+| Not included | Why |
 | :--- | :--- |
-| Surveying | The level difference is measured on site and entered by hand or pasted from Excel |
-| Plan (horizontal) alignment | The app works in elevation: levels, rotations and shims along the run |
-| Shared, multi-user runs | Each browser keeps its own run; use CSV and PDF exports to share results |
+| Surveying | The level difference is still measured on site. You type it in or paste it from Excel |
+| Horizontal (plan) alignment | The app only works in elevation: levels, rotations and shims along the run |
+| Sharing one run between several people | Each browser keeps its own run. To share results, use the CSV and PDF exports |
 
 ---
 
@@ -183,25 +184,25 @@ Inputs are saved automatically in the browser. There's a built-in step-by-step g
 
 ![Latest v36](https://img.shields.io/badge/latest-v36-16235c?style=flat-square) ![Releases](https://img.shields.io/badge/versions-36-64748b?style=flat-square)
 
-The main milestones, newest first.
+The bigger updates, newest first.
 
-| Version | Released | Headline |
+| Version | Released | What changed |
 | :--- | :--- | :--- |
-| **v36** | 2026-10-15 | Credits card with collaborator photos |
-| **v34** | 2026-10-15 | Credits card |
-| **v33** | 2026-10-14 | View only, Edit (password) and Demo modes; *Play erection* |
-| **v32** | 2026-10-13 | Larger Wiecon logo and page footer |
-| **v30** | 2026-10-13 | Live PDF preview; sticky section navigation |
-| **v28** | 2026-10-13 | Erection schedule exported to PDF as a real table |
-| **v26** | 2026-10-13 | PDF export of every graph, built into the page |
-| **v24** | 2026-10-10 | Segments inside the envelope filled bright green |
-| **v21** | 2026-10-09 | *Clear shims of unerected segments* |
-| **v17** | 2026-10-08 | Auto shimming: back into the envelope, then parallel |
-| **v16** | 2026-10-08 | Erected ticks, joint column, *Currently editing* highlight |
-| **v13.5** | 2026-10-07 | Hardened after break testing |
-| **v7** | 2026-10-05 | Assembled-segments elevation view added |
-| **v4** | 2026-09-23 | Manual shimming clears the shim matrix |
-| **v1** | — | First calculator |
+| **v36** | 2026-10-15 | Photos added to the credits card |
+| **v34** | 2026-10-15 | New credits card |
+| **v33** | 2026-10-14 | View only, Edit (with a password) and Demo modes, plus *Play erection* |
+| **v32** | 2026-10-13 | Bigger Wiecon logo and a page footer |
+| **v30** | 2026-10-13 | PDF preview before saving, and a navigation bar that stays at the top |
+| **v28** | 2026-10-13 | The erection schedule can be exported to PDF as a proper table |
+| **v26** | 2026-10-13 | Every graph can be exported to PDF, straight from the page |
+| **v24** | 2026-10-10 | Segments within tolerance are filled bright green |
+| **v21** | 2026-10-09 | New button to clear the shims of segments not built yet |
+| **v17** | 2026-10-08 | Auto shimming: back within tolerance first, then parallel |
+| **v16** | 2026-10-08 | *Erected* ticks, a joint column, and the segment you're editing is highlighted |
+| **v13.5** | 2026-10-07 | Fixes from a round of deliberately trying to break it |
+| **v7** | 2026-10-05 | New view showing the assembled segments in elevation |
+| **v4** | 2026-09-23 | Switching to manual shimming clears the shim table |
+| **v1** | — | The first version of the calculator |
 
 ---
 
@@ -212,4 +213,4 @@ The main milestones, newest first.
 
 Copyright © 2026 Immanuel Wiessler and Wiecon Consultants Taiwan. All rights reserved.
 
-This repository is published to describe Precast Segment Alignment. It contains no source code, and publishing it grants no licence to the software. For questions or permission requests, email **[im.wiessler@gmail.com](mailto:im.wiessler@gmail.com)**.
+I've made this repository public so people can see what Precast Segment Alignment does. It doesn't contain any source code, and making it public doesn't give anyone a licence to the software. If you have questions or want to ask for permission, email me at **[im.wiessler@gmail.com](mailto:im.wiessler@gmail.com)**.
