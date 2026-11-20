@@ -1,10 +1,8 @@
 <div align="center">
 
-<img src="docs/images/hero.svg" width="100%" alt="Precast Segment Alignment by Wiecon: track precast bridge segments as they are erected and plan the shims that keep the deck on its design line. In the Demo run the deck ends 137 mm off at mid-span uncorrected, and 2.2 mm off with shims.">
+<img src="docs/images/hero.svg" width="100%" alt="Precast Segment Alignment by Wiecon: track precast bridge segments as they are erected and plan the shims that keep the deck on its design line. Version v36, one HTML5 file, plain JavaScript, runs offline. In the Demo run the deck ends 137 mm off at mid-span uncorrected, and 2.2 mm off with shims.">
 
 **Keeps a precast bridge deck on line while it's being built, one segment at a time.**
-
-![Version 36](https://img.shields.io/badge/version-v36-16235c?style=for-the-badge) ![HTML5](https://img.shields.io/badge/HTML5-single_file-2f6fd0?style=for-the-badge&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-no_framework-1f8a70?style=for-the-badge&logo=javascript&logoColor=white) ![Offline](https://img.shields.io/badge/runs-offline-b45309?style=for-the-badge)
 
 <a href="docs/video/Precast%20Segment%20Alignment%20-%20Promo%20v36%20(rev%201).mp4"><img src="docs/video/promo_thumbnail_play.jpg" alt="Play the Precast Segment Alignment promo video" width="840"></a>
 
