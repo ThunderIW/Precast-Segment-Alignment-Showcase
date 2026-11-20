@@ -152,6 +152,10 @@ The whole app is one HTML file of about 530 KB. There's no server and no install
 | **Storage** | Your inputs are kept in the browser's local storage. The edit password and the resume PIN are only ever stored as SHA-256 hashes. |
 | **Promo video** | The 52-second video at the top was made with HyperFrames, using screens from the app's Demo run. |
 
+How one survey value moves through the page, and how a PDF report is made. Every box is a part of the one HTML file (v41); the diagram is drawn with [archgram](https://www.npmjs.com/package/archgram) from the private source.
+
+<p align="center"><img src="docs/images/architecture.svg" width="100%" alt="The site engineer types each segment's surveyed Δh into the erection schedule; render() runs solve() for the rotations and shim plan, redraws the SVG graphs, updates the status bar and saves the run to this browser's localStorage, from which it loads again on open; Export to PDF captures the graphs and the page's own PDF writer saves an A4 report. No server is involved."></p>
+
 ---
 
 ## 05. Example workflow
