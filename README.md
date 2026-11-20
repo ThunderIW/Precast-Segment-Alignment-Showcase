@@ -42,7 +42,7 @@
 | 04 | [Architecture](#04-architecture) | How it all fits into one HTML file |
 | 05 | [Example workflow](#05-example-workflow) | What using it looks like for one segment |
 | 06 | [What it doesn't do](#06-what-it-doesnt-do) | Things that are out of scope |
-| 07 | [Changelog](#07-changelog) | The bigger updates so far |
+| 07 | [Milestones](#07-milestones) | How the app has grown |
 | 08 | [Copyright](#08-copyright) | What this repo is and isn't |
 
 <br>
@@ -180,34 +180,19 @@ How one survey value moves through the page, and how a PDF report is made. Every
 
 ---
 
-## 07. Changelog
+## 07. Milestones
 
-![Latest v41](https://img.shields.io/badge/latest-v41-16235c?style=flat-square) ![Releases](https://img.shields.io/badge/versions-41-64748b?style=flat-square)
+![Latest v41](https://img.shields.io/badge/latest-v41_·_Nov_2026-16235c?style=flat-square)
 
-The bigger updates, newest first.
+How the app has grown, in what it can do.
 
-| Version | Released | What changed |
-| :--- | :--- | :--- |
-| **v41** | 2026-11-20 | A tidier navigation bar: everything in it the same height and style, the current section underlined, and *Export to PDF* always in view on a narrow screen |
-| **v40** | 2026-11-20 | The Site entry card follows the order of work on site (pack, then survey), with a large Low ↓ / High ↑ sign choice and an in/out of tolerance verdict; a 12-hour PIN; a set-up card for a new run |
-| **v39** | 2026-11-20 | Warnings about doubtful values in the Site entry card, a small status card while you scroll on a desktop, and Undo in the Run data menu |
-| **v38** | 2026-11-20 | The status bar names the next shim; three main readouts; the Site entry card on phones; the resume PIN; a run summary page at the start of the PDF |
-| **v37** | 2026-11-20 | Easier to read on site: darker labels, larger small text, the status bar first on phones and bigger buttons to tap |
-| **v36** | 2026-10-15 | Photos added to the credits card |
-| **v34** | 2026-10-15 | New credits card |
-| **v33** | 2026-10-14 | View only, Edit (with a password) and Demo modes, plus *Play erection* |
-| **v32** | 2026-10-13 | Bigger Wiecon logo and a page footer |
-| **v30** | 2026-10-13 | PDF preview before saving, and a navigation bar that stays at the top |
-| **v28** | 2026-10-13 | The erection schedule can be exported to PDF as a proper table |
-| **v26** | 2026-10-13 | Every graph can be exported to PDF, straight from the page |
-| **v24** | 2026-10-10 | Segments within tolerance are filled bright green |
-| **v21** | 2026-10-09 | New button to clear the shims of segments not built yet |
-| **v17** | 2026-10-08 | Auto shimming: back within tolerance first, then parallel |
-| **v16** | 2026-10-08 | *Erected* ticks, a joint column, and the segment you're editing is highlighted |
-| **v13.5** | 2026-10-07 | Fixes from a round of deliberately trying to break it |
-| **v7** | 2026-10-05 | New view showing the assembled segments in elevation |
-| **v4** | 2026-09-23 | Switching to manual shimming clears the shim table |
-| **v1** | — | The first version of the calculator |
+| Milestone | What it brought |
+| :--- | :--- |
+| **Auto shimming** | Plans the shims for every joint still to come: back into tolerance first, then parallel to the design line |
+| **PDF reports** | Graphs, the erection schedule and a run summary page, made inside the page itself, with a preview before saving |
+| **View only, Edit and Demo modes** | A live run can't be changed by accident, and anyone can try the app on a sample run |
+| **Site-ready** | The Site entry card on phones, and text and buttons that stay readable outdoors |
+| **Latest** | v41, November 2026 |
 
 ---
 
