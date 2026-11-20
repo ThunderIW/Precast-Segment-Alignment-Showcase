@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="Media/Logos/wiecon-logo.png" alt="Wiecon logo" width="160">
-
-# Precast Segment Alignment
+<img src="docs/images/hero.svg" width="100%" alt="Precast Segment Alignment by Wiecon: track precast bridge segments as they are erected and plan the shims that keep the deck on its design line. In the Demo run the deck ends 137 mm off at mid-span uncorrected, and 2.2 mm off with shims.">
 
 **Keeps a precast bridge deck on line while it's being built, one segment at a time.**
 
