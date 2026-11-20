@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="docs/images/hero.svg?v=2" width="100%" alt="Precast Segment Alignment by Wiecon: track precast bridge segments as they are erected and plan the shims that keep the deck on its design line. Version v36, one HTML5 file, plain JavaScript, runs offline. In the Demo run the deck ends 137 mm off at mid-span uncorrected, and 2.2 mm off with shims.">
+<img src="docs/images/hero.svg?v=3" width="100%" alt="Precast Segment Alignment by Wiecon: track precast bridge segments as they are erected and plan the shims that keep the deck on its design line. Version v41, one HTML5 file, plain JavaScript, runs offline. In the Demo run the deck ends 137 mm off at mid-span uncorrected, and 2.2 mm off with shims.">
 
 **Keeps a precast bridge deck on line while it's being built, one segment at a time.**
 
 <a href="docs/video/Precast%20Segment%20Alignment%20-%20Promo%20v36%20(rev%201).mp4"><img src="docs/video/promo_thumbnail_play.jpg" alt="Play the Precast Segment Alignment promo video" width="840"></a>
 
-<sub>A short 52-second video of the app in action. Click the image, then hit play on the GitHub file page.<br>Music: <i>Motivational Upbeat Corporate</i>, a royalty-free background track.</sub>
+<sub>A short 52-second video of the app in action (recorded on v36; the screenshots below are from v41). Click the image, then hit play on the GitHub file page.<br>Music: <i>Motivational Upbeat Corporate</i>, a royalty-free background track.</sub>
 
 <sub>This repo is just a showcase, the source code itself is private. All the segments, survey values and shims you see in the video and screenshots come from the app's built-in <b>Demo</b> run, so there's no real project data in here.</sub>
 
@@ -85,16 +85,16 @@ The app plans a shim for every joint that hasn't been built yet. If the deck has
 There are two side views. One zooms in on the few segments around the latest one and shows every value on the drawing. The other shows the whole run as one chain. The rotations are exaggerated in the drawings so you can actually see them, but the numbers are always the real values. Segments that are built and within tolerance turn green.
 
 **5.** ![Alignment checks](https://img.shields.io/badge/Alignment_checks-dc2626?style=flat-square)<br>
-A bar at the top tells you right away whether every built segment is within ±5 mm, and which one is the furthest off. If a survey value looks wrong or impossible, the app flags it rather than quietly using it.
+A bar at the top tells you right away whether every built segment is within ±5 mm, and which one is the furthest off. It also names the next shim to pack, and in which joint, before the next segment goes up. If a survey value looks wrong or impossible, the app flags it rather than quietly using it.
 
 **6.** ![PDF and CSV export](https://img.shields.io/badge/PDF_and_CSV_export-0f766e?style=flat-square)<br>
-You can export any of the graphs and the erection schedule to an A4 PDF, and preview the pages before saving. The PDF is made inside the page itself, so it works offline and doesn't need the print dialog. The schedule can also be copied as a CSV.
+You can export any of the graphs and the erection schedule to an A4 PDF, and preview the pages before saving. The PDF opens with a one-page run summary (the verdict, the main numbers and the shim plan, with room for the project name and who checked it), and it's made inside the page itself, so it works offline and doesn't need the print dialog. The schedule can also be copied as a CSV.
 
 **7.** ![View only, Edit and Demo modes](https://img.shields.io/badge/View_only,_Edit_and_Demo_modes-7c3aed?style=flat-square)<br>
-The app always opens in **View only**, so nobody can change a live run by accident. To make changes you switch to **Edit** and enter a password (it's stored as a SHA-256 hash, never as plain text). There's also a **Demo** mode with a sample run you can play around with freely, since nothing in it gets saved. Press *Play erection* and it builds the sample bridge segment by segment.
+The first time you open it, the app starts on the **Demo**; after that it opens in **View only**, so nobody can change a live run by accident. To make changes you switch to **Edit** and enter a password (it's stored as a SHA-256 hash, never as plain text). Edit locks itself again after 15 idle minutes, and an optional short PIN lets you pick up where you were in the same browser for 12 hours. There's also a **Demo** mode with a sample run you can play around with freely, since nothing in it gets saved. Press *Play erection* and it builds the sample bridge segment by segment.
 
 **8.** ![Built for site and office](https://img.shields.io/badge/Built_for_site_and_office-0891b2?style=flat-square)<br>
-Everything you enter is saved automatically in the browser. The app also has a built-in step-by-step guide, light and dark themes, and a layout that works on a phone on site as well as on a desktop in the office.
+Everything you enter is saved automatically in the browser. The app also has a built-in step-by-step guide, light and dark themes, and a layout that works on a phone on site as well as on a desktop in the office. On a phone, a **Site entry card** takes you through each segment in site order: pack the shim, then enter the survey, with a large Low ↓ / High ↑ choice for the sign (a phone's number keypad has no minus key), and it tells you straight away whether you're still within tolerance.
 
 ---
 
@@ -114,10 +114,10 @@ Everything you enter is saved automatically in the browser. The app also has a b
 <img src="docs/screenshots/02_erection_schedule.jpg" alt="Erection schedule table with surveyed Δh values, shims, joint openings and status per segment" width="840">
 </div>
 
-**The result.** The latest segment and what it does at mid-span, where the deck would end up with and without the shims, and how much shim plate the plan needs in total.
+**The result.** Three main readouts up top (where mid-span ends up with your shims, the worst deviation and the next shim to pack), then the latest segment and what it does at mid-span, where the deck would end up without any correction, and how much shim plate the plan needs in total.
 
 <div align="center">
-<img src="docs/screenshots/03_result_auto_shimming.jpg" alt="Result tiles: mid-span as erected -137.2 mm, with shims -2.2 mm, 16 shimmed joints, 14.50 mm of plate" width="840">
+<img src="docs/screenshots/03_result_auto_shimming.jpg" alt="Result: mid-span with your shims -2.22 mm, worst deviation -3.20 mm, next shim 0.500 mm; without correction -137.21 mm, 16 shimmed joints, 14.50 mm of plate" width="840">
 </div>
 
 <div align="center">
@@ -141,7 +141,7 @@ Everything you enter is saved automatically in the browser. The app also has a b
 
 ![HTML5](https://img.shields.io/badge/HTML5-one_file-2f6fd0?style=flat-square) ![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-1f8a70?style=flat-square) ![SVG](https://img.shields.io/badge/graphs-inline_SVG-16235c?style=flat-square) ![PDF](https://img.shields.io/badge/PDF-built_in_writer-0f766e?style=flat-square) ![localStorage](https://img.shields.io/badge/store-browser_localStorage-b45309?style=flat-square)
 
-The whole app is one HTML file of about 460 KB. There's no server and no install: you copy the file onto a PC and open it.
+The whole app is one HTML file of about 530 KB. There's no server and no install: you copy the file onto a PC and open it.
 
 | Part | What it does |
 | :--- | :--- |
@@ -149,7 +149,7 @@ The whole app is one HTML file of about 460 KB. There's no server and no install
 | **Shim planner** | Plans the shims for the joints still to come: first back inside the tolerance, then parallel to the design line, using only plate sizes you actually have. |
 | **Drawings** | The erection window, assembled run, centerline elevation and the deviation and rotation charts, all drawn as SVG in both light and dark themes. |
 | **PDF export** | A small PDF writer built into the page. It draws proper A4 pages with real text rather than screenshots, and saves them through the browser's Save As window where that's available. |
-| **Storage** | Your inputs are kept in the browser's local storage. The edit password is only ever stored as a SHA-256 hash. |
+| **Storage** | Your inputs are kept in the browser's local storage. The edit password and the resume PIN are only ever stored as SHA-256 hashes. |
 | **Promo video** | The 52-second video at the top was made with HyperFrames, using screens from the app's Demo run. |
 
 ---
@@ -159,7 +159,7 @@ The whole app is one HTML file of about 460 KB. There's no server and no install
 ![One segment, start to finish](https://img.shields.io/badge/one_segment,_start_to_finish-16235c?style=flat-square)
 
 1. **Set up the run.** Enter the first and last segment, the segment length and depth, the distance to mid-span, the tolerance, the thickest shim allowed and the plate sizes.
-2. **Survey the new segment.** Type its Δh into the erection schedule and tick **Erected**.
+2. **Survey the new segment.** Type its Δh into the erection schedule and tick **Erected**, or on a phone use the Site entry card.
 3. **Check the result.** The rotation, the effect at mid-span and whether you're still within tolerance all update immediately.
 4. **Pack the next shim.** Just below the result, the app tells you which shim to put in next, and in which joint, before the next segment goes up.
 5. **Share it.** Export the graphs and the schedule to PDF, or copy the schedule as a CSV.
@@ -178,12 +178,17 @@ The whole app is one HTML file of about 460 KB. There's no server and no install
 
 ## 07. Changelog
 
-![Latest v36](https://img.shields.io/badge/latest-v36-16235c?style=flat-square) ![Releases](https://img.shields.io/badge/versions-36-64748b?style=flat-square)
+![Latest v41](https://img.shields.io/badge/latest-v41-16235c?style=flat-square) ![Releases](https://img.shields.io/badge/versions-41-64748b?style=flat-square)
 
 The bigger updates, newest first.
 
 | Version | Released | What changed |
 | :--- | :--- | :--- |
+| **v41** | 2026-11-20 | A tidier navigation bar: everything in it the same height and style, the current section underlined, and *Export to PDF* always in view on a narrow screen |
+| **v40** | 2026-11-20 | The Site entry card follows the order of work on site (pack, then survey), with a large Low ↓ / High ↑ sign choice and an in/out of tolerance verdict; a 12-hour PIN; a set-up card for a new run |
+| **v39** | 2026-11-20 | Warnings about doubtful values in the Site entry card, a small status card while you scroll on a desktop, and Undo in the Run data menu |
+| **v38** | 2026-11-20 | The status bar names the next shim; three main readouts; the Site entry card on phones; the resume PIN; a run summary page at the start of the PDF |
+| **v37** | 2026-11-20 | Easier to read on site: darker labels, larger small text, the status bar first on phones and bigger buttons to tap |
 | **v36** | 2026-10-15 | Photos added to the credits card |
 | **v34** | 2026-10-15 | New credits card |
 | **v33** | 2026-10-14 | View only, Edit (with a password) and Demo modes, plus *Play erection* |
